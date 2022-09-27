@@ -47,3 +47,42 @@
   grid-column: 1/-1;
   padding: 0.5rem 2rem;
 }
+/* below widh:1152px */
+@media (max-width: 72em) {
+  .meal {
+    width: 55rem;
+  }
+}
+
+/* below widh:976px */
+@media (max-width: 61em) {
+  .meal {
+    width: 40rem;
+  }
+}
+
+/* below width 592px */
+@media (max-width: 37em) {
+  .meal {
+    width: 30rem;
+  }
+}
+
+/* below width 304px */
+@media (max-width: 19em) {
+  .meal {
+    width: 25rem;
+    padding: 1.2rem 0;
+  }
+}
+
+/* above height 688px */
+@media (min-height: 43em) {
+  html {
+    font-size: 70%;
+  }
+
+  .meal__info {
+    line-height: 1.6;
+  }
+}

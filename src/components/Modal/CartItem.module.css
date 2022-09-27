@@ -47,3 +47,16 @@
 .cart_item__btn:hover {
   background-color: #f9efdb;
 }
+
+/* below widht:640px */
+@media (max-width: 40em) {
+  .cart_item {
+    width: 35rem;
+  }
+}
+/* below widht:480px */
+@media (max-width: 30em) {
+  .cart_item {
+    width: 25rem;
+  }
+}

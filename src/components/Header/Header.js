@@ -8,7 +8,9 @@ function Header(props) {
 
   return (
     <div className={styles.header}>
-      <p className={styles.header__title}>ReactMeals</p>
+      <a href="#" className={styles.header__title}>
+        ReactMeals
+      </a>
       <Button className={styles.btn__cart} onClick={props.onModalOpenControl}>
         <ion-icon
           className={styles["header__cart-icon"]}

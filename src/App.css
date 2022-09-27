@@ -18,6 +18,7 @@
   padding: 10rem 3rem 0 3rem;
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .container__main::before {
@@ -40,4 +41,18 @@
 .active {
   opacity: 1;
   transform: translateY(-20%);
+}
+
+/* below widht:928px */
+@media (max-width: 58em) {
+  .container__main {
+    background-position-y: 20rem, 0, -20rem;
+  }
+}
+
+/* below widht:640px */
+@media (max-width: 40em) {
+  .container__main {
+    background-position-y: 20rem, 0, -5rem;
+  }
 }

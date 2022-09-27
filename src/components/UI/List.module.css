@@ -6,3 +6,10 @@
 
   list-style-type: none;
 }
+
+/* below width 592px */
+@media (max-width: 37em) {
+  .menu-list {
+    padding: 2rem 1rem;
+  }
+}

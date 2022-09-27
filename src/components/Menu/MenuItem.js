@@ -25,7 +25,7 @@ function MenuItem(props) {
   };
   const changeHandler = function (e) {
     //rule: everything except 0-9 character
-    const regex = /[^1-9]/g;
+    const regex = /[^0-9]/g;
     // according to regex, value can only show 0-9 characters.
     const value = +e.target.value.replace(regex, "");
     setInputAmount(value);

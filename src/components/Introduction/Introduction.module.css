@@ -18,3 +18,24 @@
   flex-direction: column;
   gap: 1.8rem;
 }
+
+/* below widht:832px */
+@media (max-width: 52em) {
+  .intro {
+    max-width: 37rem;
+  }
+}
+
+/* below widht:432px */
+@media (max-width: 27em) {
+  .intro {
+    text-align: start;
+    line-height: 1.6;
+  }
+  .intro__title {
+    margin-bottom: 2.4rem;
+    font-size: 1.6rem;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+}
