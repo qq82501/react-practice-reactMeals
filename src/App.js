@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import Context from "./store/context";
 import Header from "./components/Header/Header";
 import Introduction from "./components/Introduction/Introduction";
 import List from "./components/UI/List";
