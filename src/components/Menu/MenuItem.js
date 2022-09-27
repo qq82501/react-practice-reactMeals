@@ -8,6 +8,7 @@ function MenuItem(props) {
   const refInput = useRef();
   const [inputAmount, setInputAmount] = useState("");
   const addHandler = function () {
+    if (inputAmount < 1) return setInputAmount("");
     const addedItem = {
       amount: inputAmount,
       name: props.name,
@@ -15,11 +16,16 @@ function MenuItem(props) {
       itemNo: Math.random(),
     };
     context.onAdd(addedItem);
+    const myAmout = context.orderAmount + addedItem.amount;
+    const myItems = [...context.cartItems, addedItem];
+
+    localStorage.setItem("storageAmount", myAmout);
+    localStorage.setItem("storageCartItems", JSON.stringify(myItems));
     setInputAmount("");
   };
   const changeHandler = function (e) {
     //rule: everything except 0-9 character
-    const regex = /[^0-9]/g;
+    const regex = /[^1-9]/g;
     // according to regex, value can only show 0-9 characters.
     const value = +e.target.value.replace(regex, "");
     setInputAmount(value);
