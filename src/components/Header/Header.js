@@ -8,7 +8,7 @@ function Header(props) {
 
   return (
     <div className={styles.header}>
-      <a href="#" className={styles.header__title}>
+      <a href="#body" className={styles.header__title}>
         ReactMeals
       </a>
       <Button className={styles.btn__cart} onClick={props.onModalOpenControl}>
