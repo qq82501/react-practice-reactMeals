@@ -8,7 +8,6 @@ function Header(props) {
 
   return (
     <div className={styles.header}>
-      {console.log(context)}
       <p className={styles.header__title}>ReactMeals</p>
       <Button className={styles.btn__cart} onClick={props.onModalOpenControl}>
         <ion-icon

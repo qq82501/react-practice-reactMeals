@@ -16,6 +16,19 @@
   align-items: center;
   gap: 13rem;
   padding: 10rem 3rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.container__main::before {
+  content: " ";
+  background-color: #fff8e8;
+  position: absolute;
+  top: 21%;
+  left: -5%;
+  width: 150%;
+  height: 100%;
+  transform: rotate(-3deg);
 }
 
 .list__menu {
