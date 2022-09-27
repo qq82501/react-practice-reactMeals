@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Context = React.createContext({
   orderAmount: 0,
@@ -10,6 +10,15 @@ const Context = React.createContext({
 export function ContextProvider(props) {
   const [orderAmount, setOrderAmount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    setOrderAmount(+localStorage.getItem("storageAmount"));
+    setCartItems(
+      JSON.parse(!localStorage.getItem("storageCartItems"))
+        ? []
+        : JSON.parse(localStorage.getItem("storageCartItems"))
+    );
+  }, []);
 
   const updateCart = function (item) {
     if (typeof item.amount !== "number" || item.amount < 1) return;
@@ -30,15 +39,14 @@ export function ContextProvider(props) {
   };
 
   const updateCartItemAmount = function (item) {
-    console.log(item);
     if (item.action === "minus")
-      setOrderAmount((prevState) => {
-        return (prevState -= 1);
-      });
+      localStorage.setItem("storageAmount", +orderAmount - 1);
+
     if (item.action === "plus")
-      setOrderAmount((prevState) => {
-        return (prevState += 1);
-      });
+      localStorage.setItem("storageAmount", +orderAmount + 1);
+
+    setOrderAmount(+localStorage.getItem("storageAmount"));
+
     setCartItems((prevState) => {
       const [updatedItem] = prevState.filter(
         (cartItem) => cartItem.itemNo === item.itemNo
@@ -48,7 +56,10 @@ export function ContextProvider(props) {
       const updatedCartItems = item.updatedAmount
         ? [...prevState]
         : [...prevState.filter((cartItem) => cartItem.itemNo !== item.itemNo)];
-
+      localStorage.setItem(
+        "storageCartItems",
+        JSON.stringify(updatedCartItems)
+      );
       return updatedCartItems;
     });
   };
