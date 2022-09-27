@@ -1,0 +1,49 @@
+:global(.modal) {
+  background-color: rgba(0, 0, 0, 0.85);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  overflow: hidden;
+}
+.container__modal_list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 10;
+}
+
+.cart_total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.modal__btn_box {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btn__modal {
+  padding: 0.5rem 2rem;
+}
+
+:global(.btn__modal_close) {
+  border: 1px solid #db9706;
+  background-color: #fff;
+}
+
+.empty_cart__message {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+:global(.btn__modal_close):hover {
+  background-color: #f9efdb;
+}

@@ -1,0 +1,8 @@
+.menu-list {
+  max-width: 80rem;
+  padding: 2rem 4rem;
+  background-color: #fff;
+  border-radius: 20px;
+
+  list-style-type: none;
+}

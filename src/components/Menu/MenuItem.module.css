@@ -1,0 +1,49 @@
+.meal {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 1px solid #f2bac2;
+  width: 70rem;
+  padding: 1.2rem 2.4rem;
+}
+
+.meal__info {
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+}
+
+.meal__name {
+  font-weight: 700;
+}
+
+.meal__description {
+  font-style: italic;
+}
+
+.meal__price {
+  font-weight: 900;
+  color: #990d35;
+}
+
+.meal__order {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: start;
+  justify-items: end;
+  column-gap: 0.2rem;
+}
+
+.meal__order label {
+  font-weight: 700;
+}
+
+.meal__order input {
+  width: 3.6rem;
+}
+
+.btn__add {
+  grid-column: 1/-1;
+  padding: 0.5rem 2rem;
+}
