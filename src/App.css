@@ -1,3 +1,7 @@
+.container__app {
+  height: 100%;
+}
+
 .container__main {
   /* How to only show specific part of background image?
   By Layering multiple backgound image, top-layer solid color background plays as a cover to hide unwantted part of background image, then adapting background-position to show the specific part */

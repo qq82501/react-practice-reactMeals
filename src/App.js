@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Introduction from "./components/Introduction/Introduction";
@@ -57,8 +58,12 @@ function App() {
   };
 
   return (
-    <div>
-      {isModalOpen && <Modal onModalClose={modalCloseHandler} />}
+    <div className="container__app">
+      {isModalOpen &&
+        ReactDOM.createPortal(
+          <Modal onModalClose={modalCloseHandler} />,
+          document.querySelector("#modal")
+        )}
       <Header onModalOpenControl={modalOpenHandler} />
       <main className="container__main">
         <Introduction />
