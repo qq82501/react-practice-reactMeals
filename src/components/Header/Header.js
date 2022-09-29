@@ -15,9 +15,12 @@ function Header(props) {
     } else {
       setIsCartBtnPopUp(true);
       // Remove class of animation
-      setTimeout(() => {
+      const popTimer = setTimeout(() => {
         setIsCartBtnPopUp(false);
       }, 200);
+      return () => {
+        clearTimeout(popTimer);
+      };
     }
   }, [context.orderAmount]);
 
