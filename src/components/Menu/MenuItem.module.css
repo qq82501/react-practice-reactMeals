@@ -35,14 +35,6 @@
   column-gap: 0.2rem;
 }
 
-.meal__order label {
-  font-weight: 700;
-}
-
-.meal__order input {
-  width: 3.6rem;
-}
-
 .btn__add {
   grid-column: 1/-1;
   padding: 0.5rem 2rem;

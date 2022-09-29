@@ -1,17 +1,35 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Context from "../../store/context";
 import styles from "./Header.module.css";
 import Button from "../UI/Button";
 
 function Header(props) {
   const context = useContext(Context);
+  const [isCartBtnPopUp, setIsCartBtnPopUp] = useState(false);
+
+  // Control cart button pop up animation
+  useEffect(() => {
+    //Only pop up when amount of cart items greater than 0;
+    if (!context.orderAmount) {
+      return;
+    } else {
+      setIsCartBtnPopUp(true);
+      // Remove class of animation
+      setTimeout(() => {
+        setIsCartBtnPopUp(false);
+      }, 200);
+    }
+  }, [context.orderAmount]);
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <a href="#body" className={styles.header__title}>
         ReactMeals
       </a>
-      <Button className={styles.btn__cart} onClick={props.onModalOpenControl}>
+      <Button
+        className={`${styles.btn__cart} ${isCartBtnPopUp && styles.animate}`}
+        onClick={props.onModalOpenControl}
+      >
         <ion-icon
           className={styles["header__cart-icon"]}
           name="cart"
@@ -21,7 +39,7 @@ function Header(props) {
           {context.orderAmount}
         </span>
       </Button>
-    </div>
+    </header>
   );
 }
 

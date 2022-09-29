@@ -1,33 +1,32 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Introduction from "./components/Introduction/Introduction";
 import List from "./components/UI/List";
 import MenuItem from "./components/Menu/MenuItem";
-import Modal from "./components/Modal/Modal";
-
+import MyCart from "./components/Cart/MyCart";
+import Modal from "./components/UI/Modal";
 const menu = [
   {
-    mealNo: 1,
+    mealNo: "m1",
     name: "Sushi",
     description: "Finest fish and veggies",
     price: 22.99,
   },
   {
-    mealNo: 2,
+    mealNo: "m2",
     name: "Schnitzel",
     description: "A german speciality!",
     price: 16.5,
   },
   {
-    mealNo: 3,
+    mealNo: "m3",
     name: "Barbecue Burger",
     description: "Amerian, raw, meaty",
     price: 12.99,
   },
   {
-    mealNo: 4,
+    mealNo: "m4",
     name: "Green Bowl",
     description: "Healthy... and green...",
     price: 18.99,
@@ -56,27 +55,29 @@ function App() {
     setIsModalOpen(false);
     document.body.style.overflow = "initial";
   };
+  /* Helper ------------------- */
+  const menuItems = menu.map((meal) => {
+    return (
+      <MenuItem
+        key={meal.mealNo}
+        id={meal.mealNo}
+        name={meal.name}
+        description={meal.description}
+        price={meal.price}
+      />
+    );
+  });
 
+  /* Component Return ------------------- */
   return (
     <div className="container__app">
-      {isModalOpen &&
-        ReactDOM.createPortal(
-          <Modal onModalClose={modalCloseHandler} />,
-          document.querySelector("#modal")
-        )}
+      {isModalOpen && (
+        <Modal overlap={<MyCart onModalClose={modalCloseHandler} />} />
+      )}
       <Header onModalOpenControl={modalOpenHandler} />
       <main className="container__main">
         <Introduction />
-        <List className={`list__menu`}>
-          {menu.map((meal) => (
-            <MenuItem
-              key={meal.mealNo}
-              name={meal.name}
-              description={meal.description}
-              price={meal.price}
-            />
-          ))}
-        </List>
+        <List className={`list__menu`}>{menuItems}</List>
       </main>
     </div>
   );

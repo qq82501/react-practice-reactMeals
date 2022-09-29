@@ -10,17 +10,15 @@ function CartItem(props) {
     const item = {
       itemNo: props.itemNo,
       updatedAmount: props.amount - 1,
-      action: "minus",
     };
-    context.onUpdateItem(item);
+    context.onRemove(item);
   };
   const increaseHandler = function () {
-    const item = {
+    const addedItem = {
       itemNo: props.itemNo,
-      updatedAmount: props.amount + 1,
-      action: "plus",
+      amount: 1,
     };
-    context.onUpdateItem(item);
+    context.onAdd(addedItem);
   };
 
   return (

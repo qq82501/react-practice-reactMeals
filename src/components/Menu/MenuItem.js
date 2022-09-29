@@ -1,28 +1,26 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import Context from "../../store/context";
 import styles from "./MenuItem.module.css";
 import Button from "../UI/Button";
+import Input from "../UI/Input";
 
 function MenuItem(props) {
   const context = useContext(Context);
-  const refInput = useRef();
-  const [inputAmount, setInputAmount] = useState("");
-  const addHandler = function () {
+  const [inputAmount, setInputAmount] = useState(1);
+
+  const addHandler = function (e) {
+    e.preventDefault();
     if (inputAmount < 1) return setInputAmount("");
     const addedItem = {
       amount: inputAmount,
       name: props.name,
       price: props.price,
-      itemNo: Math.random(),
+      itemNo: props.id,
     };
     context.onAdd(addedItem);
-    const myAmout = context.orderAmount + addedItem.amount;
-    const myItems = [...context.cartItems, addedItem];
-
-    localStorage.setItem("storageAmount", myAmout);
-    localStorage.setItem("storageCartItems", JSON.stringify(myItems));
-    setInputAmount("");
+    setInputAmount(1);
   };
+
   const changeHandler = function (e) {
     //rule: everything except 0-9 character
     const regex = /[^0-9]/g;
@@ -37,18 +35,23 @@ function MenuItem(props) {
         <p className={styles.meal__description}>{props.description}</p>
         <p className={styles.meal__price}>{`$${props.price.toFixed(2)}`}</p>
       </div>
-      <div className={styles.meal__order}>
-        <label>Amount</label>
-        <input
-          type="text"
-          value={inputAmount}
-          ref={refInput}
-          onChange={changeHandler}
+      <form className={styles.meal__order} onSubmit={addHandler}>
+        <Input
+          labelName="Amount"
+          input={{
+            type: "number",
+            id: `amount__${props.id}`,
+            min: 1,
+            max: 20,
+            step: 1,
+            value: inputAmount,
+            onChange: changeHandler,
+          }}
         />
-        <Button className={styles.btn__add} onClick={addHandler}>
+        <Button className={styles.btn__add} type="submit">
           + Add
         </Button>
-      </div>
+      </form>
     </li>
   );
 }
