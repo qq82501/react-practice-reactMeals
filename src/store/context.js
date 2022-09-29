@@ -34,6 +34,8 @@ const reducer = function (state, action) {
         orderAmount: state.orderAmount - 1,
         cartItems: JSON.parse(localStorage.getItem("storageCartItems")),
       };
+    default:
+      return state;
   }
 };
 
