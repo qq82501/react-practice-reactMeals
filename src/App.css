@@ -18,7 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 13rem;
+  /* gap: 13rem; */
   padding: 10rem 3rem 0 3rem;
   position: relative;
   overflow: hidden;
@@ -38,8 +38,25 @@
 
 .list__menu {
   border: 3px groove #d52941;
-  opacity: 0;
   transition: all 0.5s;
+}
+
+.loading {
+  font-weight: 700;
+  z-index: 10;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.error {
+  font-weight: 700;
+  color: red;
+  z-index: 10;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .active {

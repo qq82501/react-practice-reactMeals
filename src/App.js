@@ -10,11 +10,14 @@ import Modal from "./components/UI/Modal";
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [menu, setMenu] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState();
 
   const fetchMenu = useCallback(async function () {
     const res = await fetch(
       "https://reactmeals-c7491-default-rtdb.firebaseio.com/menu.json"
     );
+    if (!res.ok) throw new Error("HTTP request failed, please refresh again");
     const data = await res.json();
 
     let menu = [];
@@ -22,6 +25,7 @@ function App() {
       menu.push({ id: key, ...data[key] });
     }
     setMenu(menu);
+    setIsLoading(false);
     setTimeout(() => {
       //slide-in effect
       document.querySelector(".list__menu").classList.add("active");
@@ -29,7 +33,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetchMenu();
+    fetchMenu().catch((err) => setFetchError(err.message));
   }, [fetchMenu]);
 
   const modalOpenHandler = function () {
@@ -58,6 +62,10 @@ function App() {
     );
   });
 
+  let menuContent = menuItems;
+  if (isLoading) menuContent = <p className="loading">loading...</p>;
+  if (fetchError) menuContent = <p className="error">{fetchError}</p>;
+
   /* Component Return ------------------- */
   return (
     <div className="container__app">
@@ -67,7 +75,7 @@ function App() {
       <Header onModalOpenControl={modalOpenHandler} />
       <main className="container__main">
         <Introduction />
-        <List className={`list__menu`}>{menuItems}</List>
+        <List className={`list__menu`}>{menuContent}</List>
       </main>
     </div>
   );
