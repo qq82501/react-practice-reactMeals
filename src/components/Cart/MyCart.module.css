@@ -1,5 +1,5 @@
 .container__modal_list {
-  max-height: 40rem;
+  max-height: 60rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;

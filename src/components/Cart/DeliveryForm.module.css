@@ -1,0 +1,21 @@
+.label__recipient {
+  font-size: 1.6rem;
+}
+.label__address {
+  font-size: 1.6rem;
+}
+.input__recipient {
+  width: 10rem;
+  text-align: start;
+}
+.input__address {
+  width: 100%;
+  text-align: start;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}

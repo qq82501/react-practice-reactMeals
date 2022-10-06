@@ -16,7 +16,7 @@
 
 .cart_item__name {
   grid-column: 1/-1;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
 }
 .cart_item__price {

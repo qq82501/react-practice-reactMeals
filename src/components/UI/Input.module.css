@@ -6,3 +6,9 @@
 .label {
   font-weight: 700;
 }
+
+.error-message {
+  color: #a70b0b;
+  font-weight: 500;
+  font-size: 1rem;
+}

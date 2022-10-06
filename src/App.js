@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Introduction from "./components/Introduction/Introduction";
@@ -6,41 +6,31 @@ import List from "./components/UI/List";
 import MenuItem from "./components/Menu/MenuItem";
 import MyCart from "./components/Cart/MyCart";
 import Modal from "./components/UI/Modal";
-const menu = [
-  {
-    mealNo: "m1",
-    name: "Sushi",
-    description: "Finest fish and veggies",
-    price: 22.99,
-  },
-  {
-    mealNo: "m2",
-    name: "Schnitzel",
-    description: "A german speciality!",
-    price: 16.5,
-  },
-  {
-    mealNo: "m3",
-    name: "Barbecue Burger",
-    description: "Amerian, raw, meaty",
-    price: 12.99,
-  },
-  {
-    mealNo: "m4",
-    name: "Green Bowl",
-    description: "Healthy... and green...",
-    price: 18.99,
-  },
-];
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [menu, setMenu] = useState([]);
+
+  const fetchMenu = useCallback(async function () {
+    const res = await fetch(
+      "https://reactmeals-c7491-default-rtdb.firebaseio.com/menu.json"
+    );
+    const data = await res.json();
+
+    let menu = [];
+    for (const key in data) {
+      menu.push({ id: key, ...data[key] });
+    }
+    setMenu(menu);
+    setTimeout(() => {
+      //slide-in effect
+      document.querySelector(".list__menu").classList.add("active");
+    }, 500);
+  }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      document.querySelector(".list__menu").classList.add("active");
-    }, 1000);
-  }, []);
+    fetchMenu();
+  }, [fetchMenu]);
 
   const modalOpenHandler = function () {
     setIsModalOpen(true);
@@ -59,8 +49,8 @@ function App() {
   const menuItems = menu.map((meal) => {
     return (
       <MenuItem
-        key={meal.mealNo}
-        id={meal.mealNo}
+        key={meal.id}
+        id={meal.id}
         name={meal.name}
         description={meal.description}
         price={meal.price}
