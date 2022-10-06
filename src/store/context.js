@@ -16,7 +16,7 @@ const initialState = {
 const reducer = function (state, action) {
   switch (action.type) {
     case "FETCH_FROM_STORAGE":
-      if (!action.payload.amount) return initialState;
+      if (!action.payload || !action.payload.amount) return initialState;
 
       return {
         ...state,
