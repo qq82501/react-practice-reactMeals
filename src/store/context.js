@@ -1,11 +1,14 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 const Context = React.createContext({
   orderAmount: 0,
   cartItems: [],
+  isModalOpen: false,
   onAdd: function (item) {},
   onRemove: function (item) {},
   onReset: function () {},
+  onModalOpen: function () {},
+  onModalClose: function () {},
 });
 
 const initialState = {
@@ -45,6 +48,7 @@ const reducer = function (state, action) {
 
 export function ContextProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchCartData = async function () {
@@ -133,7 +137,32 @@ export function ContextProvider(props) {
   };
 
   const resetHandler = function () {
-    dispatch({ type: "RESET" });
+    const resetOption = {
+      method: "PATCH",
+      header: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: 0,
+        cartItems: [],
+      }),
+    };
+    httpRequest(resetOption, "RESET");
+  };
+
+  const modalOpenHandler = function () {
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const modalCloseHandler = function (e) {
+    if (
+      !e.target.closest(".btn__modal_close") &&
+      !e.target.classList.contains("modal")
+    )
+      return;
+    setIsModalOpen(false);
+    document.body.style.overflow = "unset";
   };
 
   return (
@@ -141,9 +170,12 @@ export function ContextProvider(props) {
       value={{
         orderAmount: state.orderAmount,
         cartItems: state.cartItems,
+        isModalOpen,
         onAdd: addToCartHandler,
         onRemove: removeFromCartHandler,
         onReset: resetHandler,
+        onModalClose: modalCloseHandler,
+        onModalOpen: modalOpenHandler,
       }}
     >
       {props.children}

@@ -1,28 +1,37 @@
-.container__modal_list {
+.container__my_cart {
   max-height: 60rem;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  border-radius: 20px;
+  /* flex-direction: column; */
+  /* gap: 2rem; */
   z-index: 20;
-  padding: 4rem 4rem 2rem 4rem;
-  overflow-y: scroll;
+
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  min-width: 68rem;
 }
 
-.container__modal_list::-webkit-scrollbar {
-  width: 1rem;
+.cart_detail::-webkit-scrollbar {
+  color: #990d35;
+  width: 0.7rem;
 }
 
-.container__modal_list::-webkit-scrollbar-thumb {
+.cart_detail::-webkit-scrollbar-thumb {
   background-color: #990d35;
   border-radius: 3px;
 }
 
-.container__modal_list::-webkit-scrollbar-track-piece {
+.cart_detail::-webkit-scrollbar-track-piece {
   margin: 3rem 0;
+}
+
+.cart__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
 .cart_total {
@@ -30,6 +39,7 @@
   justify-content: space-between;
   font-size: 2.4rem;
   font-weight: 700;
+  margin-bottom: 2rem;
 }
 
 .modal__btn_box {
@@ -38,8 +48,45 @@
   gap: 1rem;
 }
 
+.submit_complete__btn_box {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
 .btn__modal {
   padding: 0.5rem 2rem;
+}
+
+.form_box {
+  position: absolute;
+  top: 9%;
+  right: 6%;
+  transition: position 0s, transform 0.5s;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: -10;
+}
+
+.mobile_form_box {
+  transition: position 0s, transform 0.5s;
+  z-index: -10;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  height: 0;
+}
+
+.form_delivery__card {
+  height: 100%;
+}
+
+.cart_detail {
+  padding: 2rem 4rem 2rem 4rem;
+  transition: all 0.3s;
+  overflow-y: scroll;
+  width: auto;
 }
 
 :global(.btn__modal_close) {
@@ -50,34 +97,81 @@
 .empty_cart__message {
   font-size: 2rem;
   font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.success__message {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 :global(.btn__modal_close):hover {
   background-color: #f9efdb;
 }
 
+/* Only for change child elements */
+:global(.delivery_extented) {
+}
+
+:global(.delivery_extented) .form_box {
+  position: relative;
+  right: 25%;
+  transform: translateX(85%);
+  opacity: 1;
+  pointer-events: all;
+  visibility: visible;
+}
+
+:global(.delivery_extented) .modal__btn_box {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* below widht:960px */
+@media (max-width: 60em) {
+  :global(.delivery_extented) .form_box {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    width: 0;
+  }
+
+  :global(.delivery_extented) .mobile_form_box {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+    height: auto;
+  }
+
+  .cart_detail {
+    overflow-y: scroll;
+    height: auto;
+  }
+  .form_delivery__card {
+    height: auto;
+    padding: 0 !important;
+  }
+
+  .container__my_cart {
+    max-height: 50rem;
+    overflow-x: hidden;
+    min-width: 30rem;
+  }
+}
+
 /* below widht:640px */
 @media (max-width: 40em) {
-  .container__modal_list {
+  /* .container__my_cart {
     max-height: 50rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    z-index: 10;
-    padding: 4rem 4rem 2rem 4rem;
     overflow-y: scroll;
-  }
+    overflow-x: hidden;
+    min-width: 30rem;
+  } */
 }
 
 /* below widht:416px */
 @media (max-width: 26em) {
-  .container__modal_list {
-    max-height: 50rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    z-index: 10;
-    padding: 4rem 2rem 2rem 2rem;
-    overflow-y: scroll;
-  }
 }

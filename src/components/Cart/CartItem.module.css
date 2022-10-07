@@ -48,6 +48,11 @@
   background-color: #f9efdb;
 }
 
+/* for changing child elements */
+:global(.delivery_extented) .cart_item {
+  width: 30rem;
+}
+
 /* below widht:640px */
 @media (max-width: 40em) {
   .cart_item {
