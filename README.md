@@ -25,6 +25,8 @@ A virtual meal ordering site.
 3. Adding Card UI component and replace part of List UI component with it.
 4. RWD optimazation.
 
+---
+
 ### Update 2022-10-06 (connect to firebase)
 
 1. instead of dealing with data through localstorage, we storage data on firebase and process them.
