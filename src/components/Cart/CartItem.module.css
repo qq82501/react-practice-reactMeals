@@ -1,6 +1,7 @@
 .cart_item {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 0.5rem;
   border-bottom: 2px solid #990d35;
 }
 
@@ -51,11 +52,5 @@
 @media (max-width: 40em) {
   .cart_item {
     width: 35rem;
-  }
-}
-/* below widht:480px */
-@media (max-width: 30em) {
-  .cart_item {
-    width: 25rem;
   }
 }
