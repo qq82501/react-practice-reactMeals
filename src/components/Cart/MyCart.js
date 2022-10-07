@@ -15,11 +15,8 @@ function MyCart(props) {
 
   const isCartEmpty = context.cartItems.length === 0;
 
-  console.log("isDeliveryOpen:", isDeliveryOpen);
-  console.log("isCartEmpty:", isCartEmpty);
-
   useEffect(() => {
-    if (!isSubmitComplete && isCartEmpty) setIsDeliveryOpen(false);
+    if (isSubmitComplete || isCartEmpty) setIsDeliveryOpen(false);
   }, [isSubmitComplete, isCartEmpty]);
 
   /* Helper ------------------- */
