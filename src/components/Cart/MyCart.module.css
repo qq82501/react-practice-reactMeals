@@ -72,10 +72,11 @@
 .mobile_form_box {
   transition: position 0s, transform 0.5s;
   z-index: -10;
-  opacity: 0;
+  display: none;
+  /* opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  height: 0;
+  height: 0; */
 }
 
 .form_delivery__card {
@@ -144,11 +145,13 @@
     pointer-events: all;
     visibility: visible;
     height: auto;
+    display: block;
   }
 
   .cart_detail {
     overflow-y: scroll;
     height: auto;
+    height: unset !important;
   }
   .form_delivery__card {
     height: auto;

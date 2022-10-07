@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #990d35;
-  width: 50rem;
 }
 
 .cart_item__info {
@@ -46,11 +45,6 @@
 
 .cart_item__btn:hover {
   background-color: #f9efdb;
-}
-
-/* for changing child elements */
-:global(.delivery_extented) .cart_item {
-  width: 30rem;
 }
 
 /* below widht:640px */
