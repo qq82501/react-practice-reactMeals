@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
-import React from "react";
-import "./Modal.module.css";
+import React, { useContext } from "react";
+import Context from "../../store/context";
+import styles from "./Modal.module.css";
 
 function Modal(props) {
   const portalTo = document.querySelector("#modal");
@@ -20,11 +21,12 @@ function Modal(props) {
 }
 
 function Backdrop(props) {
-  return <div className={`modal`} onClick={props.onModalClose}></div>;
+  const context = useContext(Context);
+  return <div className={`modal`} onClick={context.onModalClose}></div>;
 }
 
 function Overlap(props) {
-  return <div>{props.children}</div>;
+  return <div className={styles.overlap}>{props.children}</div>;
 }
 
 export default Modal;

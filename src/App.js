@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
+import Context from "./store/context";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Introduction from "./components/Introduction/Introduction";
@@ -8,7 +9,8 @@ import MyCart from "./components/Cart/MyCart";
 import Modal from "./components/UI/Modal";
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const context = useContext(Context);
+
   const [menu, setMenu] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState();
@@ -36,19 +38,6 @@ function App() {
     fetchMenu().catch((err) => setFetchError(err.message));
   }, [fetchMenu]);
 
-  const modalOpenHandler = function () {
-    setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
-  };
-  const modalCloseHandler = function (e) {
-    if (
-      !e.target.closest(".btn__modal_close") &&
-      !e.target.classList.contains("modal")
-    )
-      return;
-    setIsModalOpen(false);
-    document.body.style.overflow = "initial";
-  };
   /* Helper ------------------- */
   const menuItems = menu.map((meal) => {
     return (
@@ -69,10 +58,8 @@ function App() {
   /* Component Return ------------------- */
   return (
     <div className="container__app">
-      {isModalOpen && (
-        <Modal overlap={<MyCart onModalClose={modalCloseHandler} />} />
-      )}
-      <Header onModalOpenControl={modalOpenHandler} />
+      {context.isModalOpen && <Modal overlap={<MyCart />} />}
+      <Header onModalOpenControl={context.onModalOpen} />
       <main className="container__main">
         <Introduction />
         <List className={`list__menu`}>{menuContent}</List>
